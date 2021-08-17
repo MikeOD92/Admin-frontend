@@ -1,38 +1,18 @@
-import { render } from '@testing-library/react';
 import React from 'react'
 import { Component } from 'react';
+import './Public.css'
 
 class Login extends Component {
     render(){
         return(
-        <div className="text-center">
-    
-            <main className="form-signin">
-            <form>
-                <img className="mb-4" src="/docs/5.1/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"/>
-                <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
-
-                <div className="form-floating">
-                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
-                <label htmlFor="floatingInput">Email address</label>
-                </div>
-                <div className="form-floating">
-                <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
-                <label htmlFor="floatingPassword">Password</label>
-                </div>
-
-                <div className="checkbox mb-3">
-                <label>
-                    <input type="checkbox" value="remember-me"/> Remember me
-                </label>
-                </div>
-                <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                <p className="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+            <form className="form-signin">
+                <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+                <label htmlFor="inputEmail" className="sr-only">Email address</label>
+                <input type="email" id="inputEmail" className="form-control" placeholder="Email address" required autoFocus/>
+                <label htmlFor="inputPassword" className="sr-only">Password</label>
+                <input type="password" id="inputPassword" className="form-control" placeholder="Password" required/>
+                <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
-            </main>
-        </div>
-        )   
-}
-}
-
+            )
+}}
 export default Login

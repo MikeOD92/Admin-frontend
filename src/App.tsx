@@ -4,6 +4,8 @@ import './App.css';
 import Dashboard from './secure/Dashboard';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Users from './secure/Users';
+import Login from './public/Login';
+import Register from './public/Register';
 
 function App() {
   return (
@@ -19,9 +21,11 @@ function App() {
 
         <Route path={'/'} exact component={Dashboard} />
         <Route path={'/users'} exact component={Users} />
+        <Route path={'/login'} exact component={Login} />
+        <Route path={'/register'} exact component={Register} />
+
 
       </BrowserRouter>
-      <Dashboard />
     </main>
   </div>
 </div>

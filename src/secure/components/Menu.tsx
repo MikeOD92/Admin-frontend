@@ -7,7 +7,8 @@ const Menu = ()=>{
             <ul className="nav flex-column">
                 <li className="nav-item">
                     <a className="nav-link active" href="#">
-                        Dashboard
+                        <span data-feather="home"></span>
+                        Dashboard 
                     </a>
                 </li>
             </ul>
