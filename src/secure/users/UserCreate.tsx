@@ -17,8 +17,6 @@ export class UserCreate extends Component {
     componentDidMount = async () => {
         const response = await axios.get('roles');
 
-        
-
         this.setState({
             roles: response.data.data
         })

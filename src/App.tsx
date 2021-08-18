@@ -8,6 +8,7 @@ import {UserCreate} from './secure/users/UserCreate';
 import Login from './public/Login';
 import Register from './public/Register';
 import RedirectToDashboard from './secure/RedirectToDashBoard';
+import { UserEdit } from './secure/users/UserEdit';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
               <Route path={'/register'} exact component={Register} />
               <Route path={'/users'} exact component={Users} />
               <Route path={'/users/create'} exact component={UserCreate} />
+              <Route path={'/users/:id/edit'} component={UserEdit} />
 
 
             </BrowserRouter>
