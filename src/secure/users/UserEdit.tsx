@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { Component, PropsWithRef } from 'react'
+import React, { Component, PropsWithRef, SyntheticEvent } from 'react'
+import { Redirect } from 'react-router-dom';
 import { Role } from '../../classes/role';
 import { User } from '../../classes/user';
 import Wrapper from '../Wrapper'
@@ -7,14 +8,15 @@ import Wrapper from '../Wrapper'
 
 export class UserEdit extends Component<{ match: PropsWithRef<any> }> {
 
-    state = {      
+    state = {   
+        roles: [],  
         first_name: "",
-        redirect: false,
         user: {},
         last_name: "",
         email: "",
         role_id: 0,
-        roles: []
+        redirect: false
+
     }
 
     id = 0;
@@ -41,44 +43,64 @@ export class UserEdit extends Component<{ match: PropsWithRef<any> }> {
         })
     }
 
-    submit = async () => {
+    submit = async (e: SyntheticEvent) => {
+
+        e.preventDefault();
+
+        await axios.put(`users/${this.id}`, {
+            first_name: this.first_name,
+            last_name: this.last_name,
+            email: this.email,
+            role_id: this.role_id,
+        });
+
+        this.setState({
+            redirect: true
+        })
 
     }
 
     render() {
+        if(this.state.redirect) return <Redirect to={'/users'}/>
         return (
             <Wrapper>
                 <form onSubmit={this.submit}>
                     <div className="form-group">
                         <label>First Name</label>
                         <input type="text" className="form-control" name="first_name"
-                            onChange={e => this.first_name = e.target.value} defaultValue={this.state.first_name}
+                            defaultValue={this.first_name = this.state.first_name}
+                            onChange={e => this.first_name = e.target.value} 
                         />
                     </div>
                     <div className="form-group">
                         <label>Last Name</label>
                         <input type="text" className="form-control" name="last_name"
-                            onChange={e => this.last_name = e.target.value} defaultValue={this.state.last_name}
+                            defaultValue={this.last_name = this.state.last_name}
+                            onChange={e => this.last_name = e.target.value} 
                         />
                     </div>
                     <div className="form-group">
                         <label>Email</label>
                         <input type="text" className="form-control" name="email"
-                            onChange={e => this.email = e.target.value} defaultValue={this.state.email}
+                            defaultValue={this.email = this.state.email}
+                            onChange={e => this.email = e.target.value} 
                         />
                     </div>
 
                     <div className="form-group">
                         <label>Role</label>
                         <select name="role_id" className="form-control"
-                                onChange={e => {
-                                    this.role_id = parseInt(e.target.value);
-                                    this.setState({
-                                        role_id: this.role_id
-                                    })
-                                }}
-                                value={this.state.role_id}>
+                            value={this.role_id = this.state.role_id}
+                            onChange={e => {
+                                this.role_id = parseInt(e.target.value);
+                                this.setState({
+                                    role_id: this.role_id
+                                })
+                            }}
+                        >
+
                             <option>Select Role</option>
+
                             {this.state.roles.map(
                                 (role: Role) => {
                                     return (
