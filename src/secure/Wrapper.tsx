@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Menu from './Menu';
-import Nav from './Nav';
+import Menu from './components/Menu';
+import Nav from './components/Nav';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
@@ -26,12 +26,14 @@ export default class Wrapper extends Component {
         return (
             <>
                 <Nav />
+                <div className="table-adjust">
                 <div className="container-fluid">
                     <div className="row">
                         <Menu />
                         <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
                             {this.props.children}
                         </main>
+                    </div>
                     </div>
                     </div>
             </>

@@ -6,6 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Users from './secure/users/Users';
 import Login from './public/Login';
 import Register from './public/Register';
+import RedirectToDashboard from './secure/RedirectToDashBoard';
 
 function App() {
   return (
@@ -14,16 +15,15 @@ function App() {
 
 <div className="container-fluid">
   <div className="row">
-      <Menu />
 
     <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
       <BrowserRouter>
 
-        <Route path={'/'} exact component={Dashboard} />
+        <Route path={'/'} exact component={RedirectToDashboard} />
+        <Route path={'/dashboard'} exact component={Dashboard} />
         <Route path={'/users'} exact component={Users} />
         <Route path={'/login'} exact component={Login} />
         <Route path={'/register'} exact component={Register} />
-
 
       </BrowserRouter>
     </main>
