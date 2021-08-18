@@ -1,9 +1,10 @@
-import Nav from './secure/components/Nav';
-import Menu from './secure/components/Menu';
+// import Nav from './secure/components/Nav';
+// import Menu from './secure/components/Menu';
 import './App.css';
 import Dashboard from './secure/dashboard/Dashboard';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Users from './secure/users/Users';
+import {UserCreate} from './secure/users/UserCreate';
 import Login from './public/Login';
 import Register from './public/Register';
 import RedirectToDashboard from './secure/RedirectToDashBoard';
@@ -11,24 +12,24 @@ import RedirectToDashboard from './secure/RedirectToDashBoard';
 function App() {
   return (
     <div className="App">
-      {/* <Nav /> */}
+      <div className="container-fluid">
+        <div className="row">
 
-<div className="container-fluid">
-  <div className="row">
+          <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+            <BrowserRouter>
 
-    <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      <BrowserRouter>
+              <Route path={'/'} exact component={RedirectToDashboard} />
+              <Route path={'/dashboard'} exact component={Dashboard} />
+              <Route path={'/login'} exact component={Login} />
+              <Route path={'/register'} exact component={Register} />
+              <Route path={'/users'} exact component={Users} />
+              <Route path={'/users/create'} exact component={UserCreate} />
 
-        <Route path={'/'} exact component={RedirectToDashboard} />
-        <Route path={'/dashboard'} exact component={Dashboard} />
-        <Route path={'/users'} exact component={Users} />
-        <Route path={'/login'} exact component={Login} />
-        <Route path={'/register'} exact component={Register} />
 
-      </BrowserRouter>
-    </main>
-  </div>
-</div>
+            </BrowserRouter>
+          </main>
+        </div>
+      </div>
 </div>
   )
 

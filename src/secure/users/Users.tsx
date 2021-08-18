@@ -8,13 +8,47 @@ class Users extends Component {
     state = {
         users: []
     }
+    page = 1;
+    last_page = 0;
 
     componentDidMount = async () => {
-        const response = await axios.get('users');
-        // await console.log(response);
+        const response = await axios.get(`users?page=${this.page}`);
         this.setState({
             users: response.data.data
         })
+        this.last_page = response.data.meta.last_page;
+        console.log('lastpage')
+        console.log(this.last_page)
+        console.log(response.data) 
+    }
+
+    next = async () => {
+        if (this.page === this.last_page) return;
+
+        this.page++;
+        await this.componentDidMount();
+    }
+
+    prev = async () => {
+        if (this.page === 1) return;
+
+        this.page--;
+        await this.componentDidMount();
+    }
+
+    delete = async (id: number) =>{
+        if(window.confirm('Are you sure you want to delete this user?')) {
+            await axios.delete(`users/${id}`)
+
+            this.componentDidMount();
+            // instructor has us ad this instead of this.componentDidMount()
+            // seems to just be a sloppier way of doing this
+
+            // this.setState({
+            //     users: this.state.users.filter((u: User)=> u.id !== id)
+            // })
+        }
+        
     }
     render() {
         return (
@@ -25,8 +59,8 @@ class Users extends Component {
                             <Link to={"/users/create"} className="btn btn-sm btn-outline-secondary">Add</Link>
                         </div>
                     </div>
-                        <div className="table-responsive">
-                            <table className="table table-striped table-sm">
+                    <div className="table-responsive">
+                        <table className="table table-striped table-sm">
                             <thead>
                                 <tr>
                                 <th>#</th>
@@ -47,7 +81,7 @@ class Users extends Component {
                                             <td>
                                                 <div className="btn-group mr-2">
                                                     <a href="#" className="btn btn-sm btn-outline-secondary">Edit</a>
-                                                    <a href="#" className="btn btn-sm btn-outline-secondary">Delete</a>
+                                                    <a href="#" className="btn btn-sm btn-outline-secondary" onClick={()=> this.delete(user.id)}>Delete</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -56,6 +90,17 @@ class Users extends Component {
                             </tbody>
                             </table>
                         </div>
+
+                        <nav>
+                            <ul className="pagination">
+                                <li className="page-item">
+                                    <a href='#' className="page-link" onClick={this.prev}>Previous</a>
+                                </li>
+                                <li className="page-item">
+                                    <a href='#' className="page-link" onClick={this.next}>Next</a>
+                                </li>
+                            </ul>
+                        </nav>
                 </Wrapper>
         
             )
