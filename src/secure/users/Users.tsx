@@ -13,13 +13,15 @@ class Users extends Component {
 
     componentDidMount = async () => {
         const response = await axios.get(`users?page=${this.page}`);
+        
+        this.last_page = response.data.meta.last_page;
+
         this.setState({
             users: response.data.data
         })
-        this.last_page = response.data.meta.last_page;
-        console.log('lastpage')
-        console.log(this.last_page)
-        console.log(response.data) 
+        // console.log('lastpage')
+        // console.log(this.last_page)
+        // console.log(response.data) 
     }
 
     next = async () => {
