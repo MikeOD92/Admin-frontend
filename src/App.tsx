@@ -10,6 +10,7 @@ import Register from './public/Register';
 import RedirectToDashboard from './secure/RedirectToDashBoard';
 import { UserEdit } from './secure/users/UserEdit';
 import Roles from './secure/roles/Roles';
+import RoleCreate from './secure/roles/RoleCreate';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
               <Route path={'/users/create'} exact component={UserCreate} />
               <Route path={'/users/:id/edit'} component={UserEdit} />
               <Route path={'/roles'} component={Roles} exact />
+              <Route path={'/roles/create'} component={RoleCreate} />
 
 
             </BrowserRouter>
