@@ -68,16 +68,15 @@ export class RoleEdit extends Component <{ match: any}> {
         return (
 
             <Wrapper>
-                
                 <form onSubmit={this.submit}>
                     <div className="form-group row">
-                            <label className="col-sm-2 col-form-label"> Name</label>
-                            <div className="col-sm-10">
-                                <input type="text" className="form-control" name="name" id="name"
-                                defaultValue={this.name = this.state.name}
-                                onChange={e => this.name = e.target.value}
-                                />
-                            </div>
+                        <label className="col-sm-2 col-form-label"> Name</label>
+                        <div className="col-sm-10">
+                            <input type="text" className="form-control" name="name" id="name"
+                            defaultValue={this.name = this.state.name}
+                            onChange={e => this.name = e.target.value}
+                            />
+                        </div>
                     </div>
                     <div className="form-group row">
                         <label className="col-sm-2 col-form-label">Permissions</label>
@@ -91,12 +90,9 @@ export class RoleEdit extends Component <{ match: any}> {
                                     <label className="form-check-label">{p.name}</label>
                                 </div> 
                                 )
-                                
                             })}
-                            
                         </div>
                     </div>
-
                     <button className="btn btn-outline-secondary">Save</button>
                 </form>
             </Wrapper>
