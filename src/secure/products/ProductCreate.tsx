@@ -3,7 +3,6 @@ import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 import Wrapper from '../Wrapper';
 import ImageUpload from '../components/ImageUpload';
-import { isThisTypeNode } from 'typescript';
 
 export default class ProductCreate extends Component {
     state = {

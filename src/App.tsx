@@ -39,8 +39,6 @@ function App() {
               <Route path={'/products/create'} component={ProductCreate} />
               <Route path={'/products/:id/edit'} component={ProductEdit} />
 
-
-
             </BrowserRouter>
           </main>
         </div>
