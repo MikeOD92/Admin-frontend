@@ -32,7 +32,7 @@ export class Products extends Component {
     handleDelete = async (id: number) => {
         await this.componentDidMount()
     }
-    
+
     render() {
         return (
             <Wrapper>
@@ -62,7 +62,7 @@ export class Products extends Component {
                                                 <td><img src={product.image} width="50px"/></td>
                                                 <td>{product.title}</td>
                                                 <td>{product.description}</td>
-                                                <td>{product.price}</td>
+                                                <td>${product.price}</td>
                                                 <td>
                                                     <div className="btn-group mr-2">
                                                     <Link to={`/products/${product.id}/edit`} className="btn btn-sm btn-outline-secondary">Edit</Link>
