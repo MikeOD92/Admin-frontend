@@ -19,9 +19,6 @@ class Users extends Component {
         this.setState({
             users: response.data.data
         })
-        // console.log('lastpage')
-        // console.log(this.last_page)
-        // console.log(response.data) 
     }
 
     next = async () => {
