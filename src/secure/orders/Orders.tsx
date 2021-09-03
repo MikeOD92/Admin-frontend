@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { order } from '../../classes/order'
 import Wrapper from '../Wrapper'
-import Paginator from './Paginator'
+import Paginator from '../components/Paginator'
 
 export class Orders extends Component {
     state = {
@@ -26,9 +26,23 @@ export class Orders extends Component {
             this.page = page;
             await this.componentDidMount()
     }
+    handleExport = async () => {
+        const response = await axios.get('export', {responseType: 'blob'})
+        const blob = new Blob([response.data], {type: 'text/csv'});
+        const download_url = window.URL.createObjectURL(response.data);
+        const link = document.createElement('a');
+        link.href= download_url;
+        link.download = 'orders.csv';
+        link.click();
+    }
     render() {
         return (
             <Wrapper>
+                    <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <div className="btn-toolbar mb-2 mb-md-0">
+                            <a onClick={this.handleExport} className="btn btn-sm btn-outline-secondary">Export</a>
+                        </div>
+                    </div>
                     <div className="table-responsive">
                         <table className="table table-striped table-sm">
                             <thead>
