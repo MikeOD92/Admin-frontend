@@ -28,14 +28,14 @@ export class Profile extends Component<any> {
         })
         
         const user: User = response.data;
-
+        console.log(user.role.permissions)
         this.props.setUser(new User(
             user.id,
             user.first_name,
             user.last_name,
             user.email,
             user.role,
-            user.permissions,
+            user.role.permissions.map(per => per.name),
         ));
     }
     updatePassword = async (e:SyntheticEvent) => {
