@@ -16,7 +16,7 @@ class Wrapper extends Component<any> {
             const response = await axios.get('user');
 
             const user: User = response.data.data;
-
+            
             this.props.setUser(new User(
                 user.id,
                 user.first_name,
